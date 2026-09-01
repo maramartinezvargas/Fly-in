@@ -1,10 +1,10 @@
-from enum import StrEnum
+from enum import Enum
 
 from src.models.connection import Connection
 from src.models.zone import Zone
 
 
-class DroneStatus(StrEnum):
+class DroneStatus(str, Enum):
     """Represent the possible states of a drone."""
 
     WAITING = "waiting"

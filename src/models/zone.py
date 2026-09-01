@@ -1,7 +1,7 @@
-from enum import StrEnum
+from enum import Enum
 
 
-class ZoneType(StrEnum):
+class ZoneType(str, Enum):
     """Represent the different types of zones."""
 
     NORMAL = "normal"
