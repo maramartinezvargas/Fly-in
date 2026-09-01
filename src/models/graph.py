@@ -8,7 +8,6 @@ class Graph:
     def __init__(self) -> None:
         self.zones: dict[str, Zone] = {}
         self.connections: list[Connection] = []
-        self.adjacency: dict[str, list[Connection]] = {}
 
     def add_zone(self, zone: Zone) -> None:
         """Add a zone to the graph.
@@ -17,7 +16,6 @@ class Graph:
             zone: Zone to add.
         """
         self.zones[zone.name] = zone
-        self.adjacency[zone.name] = []
 
     def add_connection(self, connection: Connection) -> None:
         """Add a bidirectional connection to the graph.
@@ -26,6 +24,5 @@ class Graph:
             connection: Connection to add.
         """
         self.connections.append(connection)
-
-        self.adjacency[connection.zone_a.name].append(connection)
-        self.adjacency[connection.zone_b.name].append(connection)
+        connection.zone_a.connections.append(connection)
+        connection.zone_b.connections.append(connection)

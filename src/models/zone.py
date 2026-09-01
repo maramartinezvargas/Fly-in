@@ -1,4 +1,8 @@
 from enum import Enum
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from src.models.connection import Connection
 
 
 class ZoneType(str, Enum):
@@ -48,3 +52,18 @@ class Zone:
         # Status
         self.current_occupancy = 0
         self.is_start_or_end = is_start_or_end
+
+        # Connections (Adjacency)
+        self.connections: list[Connection] = []
+
+    def get_neighbors(self) -> list["Zone"]:
+        """Get the neighboring zones connected to this zone."""
+        neighbors = []
+
+        for connection in self.connections:
+            if connection.zone_a is self:
+                neighbors.append(connection.zone_b)
+            else:
+                neighbors.append(connection.zone_a)
+
+        return neighbors
