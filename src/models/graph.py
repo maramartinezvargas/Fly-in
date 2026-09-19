@@ -26,3 +26,17 @@ class Graph:
         self.connections.append(connection)
         connection.zone_a.connections.append(connection)
         connection.zone_b.connections.append(connection)
+
+    def get_connection(self, zone_a: Zone, zone_b: Zone,) -> Connection | None:
+        """Get the connection between two zones."""
+        for connection in self.connections:
+            if (
+                connection.zone_a is zone_a
+                and connection.zone_b is zone_b
+            ) or (
+                connection.zone_a is zone_b
+                and connection.zone_b is zone_a
+            ):
+                return connection
+
+        return None

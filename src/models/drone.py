@@ -32,6 +32,7 @@ class Drone:
         self.current_connection: Connection | None = None
         self.status = DroneStatus.WAITING
         self.path: list[Zone] = []
+        self.candidate_paths: list[list[Zone]] = []
         self.current_step = 0
         self.remaining_turns = 0
         self.destination_zone: Zone | None = None
